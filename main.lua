@@ -45,11 +45,13 @@ local Toggle = MainTab:CreateToggle({
    CurrentValue = false,
    Flag = "aguess", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
+            if Value = false then
             game.StarterGui:SetCore("SendNotification", {
             Title = "Nephus Hub",
             Text = "This function is disabled",
             Duration = 5
                     })
+            end
    -- The function that takes place when the toggle is pressed
    -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
@@ -99,39 +101,56 @@ local NoClipButton = MainTab:CreateButton({
    end,
 })
 
-local GiantButton = MainTab:CreateButton({
-   Name = "Become Giant",
-   Callback = function()
-      -- Set the scale factor for the giant size
-      local scaleFactor = 2  -- You can adjust this value as needed
+local isBlobActivated = false
 
-      -- Get the player's character
-      local player = game:GetService("Players").LocalPlayer
-      local character = player.Character
-
-      if character then
-         -- Adjust the entire character's size
-         for _, part in pairs(character:GetDescendants()) do
-            if part:IsA("BasePart") then
-               part.Size = part.Size * scaleFactor
-               part.Position = part.Position * scaleFactor
+local function setCharacterSize(player)
+    local character = player.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        if humanoidRootPart then
+            local newSize = isBlobActivated and Vector3.new(9, 9, 9) or Vector3.new(1, 1, 1)
+            for _, part in pairs(character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Size = newSize
+                end
             end
-         end
+        end
+    end
+end
 
-         -- Optionally, you can provide a notification to indicate the size change
-         game.StarterGui:SetCore("SendNotification", {
-            Title = "Nephus Hub",
-            Text = "You've Become Giant!",
-            Duration = 5
-         })
-      end
-   end,
+local function toggleBlob()
+    isBlobActivated = not isBlobActivated
+    setCharacterSize(game.Players.LocalPlayer)
+
+    -- Send notification
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Nephus Hub",
+        Text = isBlobActivated and "You've Become a Blob!" or "Blob Transformation Deactivated",
+        Duration = 5
+    })
+end
+
+-- Connect the function to the player's character when they join
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        setCharacterSize(player)
+    end)
+end)
+
+-- Run the function for the local player when they run the script
+setCharacterSize(game.Players.LocalPlayer)
+
+-- Assuming 'Tab' is a GUI library or module that you've imported or defined.
+local Button = Tab:CreateButton({
+    Name = "Become a Blob",
+    Callback = toggleBlob,
 })
+
 
 
 local WalkSpeedSlider = MainTab:CreateSlider({
    Name = "WalkSpeed",
-   Range = {16, 300}, -- Adjust the range as needed
+   Range = {16, 100}, -- Adjust the range as needed
    Increment = 1,
    Suffix = " speed",
    CurrentValue = 16, -- Default value
