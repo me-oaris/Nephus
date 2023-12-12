@@ -122,7 +122,18 @@ local GiantButton = MainTab:CreateButton({
             end
          end
 
-local WalkSpeedSlider = Tab:CreateSlider({
+         -- Optionally, you can provide a notification to indicate the size change
+         game.StarterGui:SetCore("SendNotification", {
+            Title = "Nephus Hub",
+            Text = "You've Become Giant!",
+            Duration = 5
+         })
+      end
+   end,
+})
+
+
+local WalkSpeedSlider = MainTab:CreateSlider({
    Name = "WalkSpeed",
    Range = {16, 100}, -- Adjust the range as needed
    Increment = 1,
@@ -137,16 +148,6 @@ local WalkSpeedSlider = Tab:CreateSlider({
       if humanoid then
          -- Set the player's walk speed
          humanoid.WalkSpeed = Value
-      end
-   end,
-})
-
-         -- Optionally, you can provide a notification to indicate the size change
-         game.StarterGui:SetCore("SendNotification", {
-            Title = "Nephus Hub",
-            Text = "You've Become Giant!",
-            Duration = 5
-         })
       end
    end,
 })
