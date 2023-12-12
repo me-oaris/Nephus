@@ -101,48 +101,6 @@ local NoClipButton = MainTab:CreateButton({
    end,
 })
 
--- Assuming 'Tab' is a GUI library or module that you've imported or defined.
-local isBlobActivated = false
-
-local Button = Tab:CreateButton({
-    Name = "Become a Blob",
-    Callback = function()
-        isBlobActivated = not isBlobActivated
-
-        local function setCharacterSize(player)
-            local character = player.Character
-            if character then
-                local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-                if humanoidRootPart then
-                    local newSize = isBlobActivated and Vector3.new(9, 9, 9) or Vector3.new(1, 1, 1)
-                    for _, part in pairs(character:GetDescendants()) do
-                        if part:IsA("BasePart") then
-                            part.Size = newSize
-                        end
-                    end
-                end
-            end
-        end
-
-        -- Connect the function to the player's character when they join
-        game.Players.PlayerAdded:Connect(function(player)
-            player.CharacterAdded:Connect(function()
-                setCharacterSize(player)
-            end)
-        end)
-
-        -- Run the function for the local player when they run the script
-        setCharacterSize(game.Players.LocalPlayer)
-
-        -- Send notification
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "Nephus Hub",
-            Text = isBlobActivated and "You've Become a Blob!" or "Blob Transformation Deactivated",
-            Duration = 5
-        })
-    end,
-})
-
 
 local WalkSpeedSlider = MainTab:CreateSlider({
    Name = "WalkSpeed",
