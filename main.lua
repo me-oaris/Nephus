@@ -122,6 +122,25 @@ local GiantButton = MainTab:CreateButton({
             end
          end
 
+local WalkSpeedSlider = Tab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 100}, -- Adjust the range as needed
+   Increment = 1,
+   Suffix = " speed",
+   CurrentValue = 16, -- Default value
+   Flag = "WalkSpeedSlider", -- Unique flag for configuration saving
+   Callback = function(Value)
+      -- The function that takes place when the slider changes
+      local player = game:GetService("Players").LocalPlayer
+      local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+
+      if humanoid then
+         -- Set the player's walk speed
+         humanoid.WalkSpeed = Value
+      end
+   end,
+})
+
          -- Optionally, you can provide a notification to indicate the size change
          game.StarterGui:SetCore("SendNotification", {
             Title = "Nephus Hub",
