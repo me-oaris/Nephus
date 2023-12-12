@@ -58,17 +58,4 @@ local Toggle = MainTab:CreateToggle({
 })
 
 local ThirdSection = MainTab:CreateSection("Misc")
-local Noclipbtn = MainTab:CreateButton({
-   Name = "No Clip",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-    })
-
-local bcblocbtn = MainTab:CreateButton({
-   Name = "Be Blob"",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
 
