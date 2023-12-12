@@ -58,65 +58,17 @@ local Toggle = MainTab:CreateToggle({
 })
 
 local ThirdSection = MainTab:CreateSection("Misc")
-local NoClipButton = MainTab:CreateButton({
+local Noclipbtn = MainTab:CreateButton({
    Name = "No Clip",
    Callback = function()
-      -- Toggles the no-clip state between on or off on every button click
-      _G.noClip = not _G.noClip
+   -- The function that takes place when the button is pressed
+   end,
+    })
 
-      if _G.noClip then
-         -- Enable No Clip
-         local player = game:GetService("Players").LocalPlayer
-         local character = player.Character
-
-         if character then
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-
-            if humanoid then
-               humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics, false)
-               humanoid:GetPropertyChangedSignal("Parent"):Connect(function()
-                  if not humanoid.Parent then
-                     humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics, false)
-                  end
-               end)
-            end
-         end
-      else
-         -- Disable No Clip
-         local player = game:GetService("Players").LocalPlayer
-         local character = player.Character
-
-         if character then
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-
-            if humanoid then
-               humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics, true)
-            end
-         end
-      end
-
-      -- Optionally, you can provide a notification to indicate the state change
-      local notificationText = _G.noClip and "No Clip Activated!" or "No Clip Deactivated!"
-      game.StarterGui:SetCore("SendNotification", {Title = "Nephus Hub", Text = notificationText, Duration = 5})
+local bcblocbtn = Tab:CreateButton({
+   Name = "Be Blob"",
+   Callback = function()
+   -- The function that takes place when the button is pressed
    end,
 })
 
-
-local WalkSpeedSlider = MainTab:CreateSlider({
-   Name = "WalkSpeed",
-   Range = {16, 100}, -- Adjust the range as needed
-   Increment = 1,
-   Suffix = " speed",
-   CurrentValue = 16, -- Default value
-   Flag = "WalkSpeedSlider", -- Unique flag for configuration saving
-   Callback = function(Value)
-      -- The function that takes place when the slider changes
-      local player = game:GetService("Players").LocalPlayer
-      local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
-
-      if humanoid then
-         -- Set the player's walk speed
-         humanoid.WalkSpeed = Value
-      end
-   end,
-})
