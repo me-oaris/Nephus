@@ -131,7 +131,7 @@ local GiantButton = MainTab:CreateButton({
 
 local WalkSpeedSlider = MainTab:CreateSlider({
    Name = "WalkSpeed",
-   Range = {16, 100}, -- Adjust the range as needed
+   Range = {16, 300}, -- Adjust the range as needed
    Increment = 1,
    Suffix = " speed",
    CurrentValue = 16, -- Default value
