@@ -65,7 +65,7 @@ local Noclipbtn = MainTab:CreateButton({
    end,
     })
 
-local bcblocbtn = Tab:CreateButton({
+local bcblocbtn = MainTab:CreateButton({
    Name = "Be Blob"",
    Callback = function()
    -- The function that takes place when the button is pressed
