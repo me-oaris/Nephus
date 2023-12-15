@@ -8,7 +8,7 @@ local Window = Fluent:CreateWindow({
     TabWidth = 100,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Light",
+    Theme = "Darker",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
