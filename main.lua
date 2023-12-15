@@ -35,7 +35,7 @@ do
     local Toggle = Tabs.Main:AddToggle("auto_guess", {Title = "Auto Guess", Default = false })
 
     Toggle:OnChanged(function()
-        print("Auto Guess Turned:", Options.MyToggle.Value)
+        print("Auto Guess Turned:", Options.auto_guess.Value)
     end)
 
     Options.auto_guess:SetValue(false)
