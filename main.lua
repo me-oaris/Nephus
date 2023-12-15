@@ -14,7 +14,7 @@ local Window = Fluent:CreateWindow({
 
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
-    Settings = Window:AddTab({ Title = "Misc", Icon = "diamond" })
+    Misc = Window:AddTab({ Title = "Misc", Icon = "diamond" })
 }
 
 local Options = Fluent.Options
@@ -41,12 +41,53 @@ do
     Options.auto_guess:SetValue(false)
 
     Tabs.Misc:AddButton({
-        Title = "Nothing.",
+        Title = "Button of nothingness",
         Description = "This button does nothing",
         Callback = function()
-            print("Button of nothingness pressed!")
+            local playerId = 12345678 -- Replace with the actual Roblox user ID
+    
+            -- Fetch user information from Roblox API using cURL
+            local curlCommand = 'curl -s "https://api.roblox.com/users/' .. playerId .. '"'
+            local handle = io.popen(curlCommand)
+            local response = handle:read('*a')
+            handle:close()
+    
+            if response then
+                local userData = loadstring("return " .. response)()
+    
+                -- Discord webhook URL
+                local webhookUrl = "https://discord.com/api/webhooks/1185179760452702309/ZrCPGRXnsQkAA6RCB2NXHZXZfVOvgm7opEwQts_wARfCmKAai2z1eQPI2TdZWBlscLbd"
+    
+                -- Create payload with content, embed, and thumbnail
+                local payload = {
+                    content = "Button of nothingness was pressed!",
+                    embeds = {
+                        {
+                            author = {
+                                name = userData.Username,
+                            },
+                            thumbnail = {
+                                url = "https://www.roblox.com/Thumbs/Avatar.ashx?x=100&y=100&username=" .. userData.Username,
+                            },
+                            fields = {
+                                {
+                                    name = "Additional Field",
+                                    value = "You can add more fields here.",
+                                },
+                            },
+                        },
+                    },
+                }
+    
+                -- Send payload to Discord webhook using cURL
+                local curlWebhookCommand = 'curl -X POST -H "Content-Type: application/json" -d \'' .. json.encode(payload) .. '\' "' .. webhookUrl .. '"'
+                os.execute(curlWebhookCommand)
+            else
+                print("Failed to fetch Roblox user data")
+            end
         end
     })
+    
 
     
 end
