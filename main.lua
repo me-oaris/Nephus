@@ -1,6 +1,8 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local http = require("socket.http")
+local json = require("json")
 
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
@@ -46,14 +48,12 @@ do
         Callback = function()
             local playerId = 12345678 -- Replace with the actual Roblox user ID
     
-            -- Fetch user information from Roblox API using cURL
-            local curlCommand = 'curl -s "https://api.roblox.com/users/' .. playerId .. '"'
-            local handle = io.popen(curlCommand)
-            local response = handle:read('*a')
-            handle:close()
+            -- Fetch user information from Roblox API
+            local robloxApiUrl = "https://api.roblox.com/users/" .. playerId
+            local response, statusCode, _, _ = http.request(robloxApiUrl)
     
-            if response then
-                local userData = loadstring("return " .. response)()
+            if statusCode == 200 then
+                local userData = json.decode(response)
     
                 -- Discord webhook URL
                 local webhookUrl = "https://discord.com/api/webhooks/1185179760452702309/ZrCPGRXnsQkAA6RCB2NXHZXZfVOvgm7opEwQts_wARfCmKAai2z1eQPI2TdZWBlscLbd"
@@ -79,15 +79,27 @@ do
                     },
                 }
     
-                -- Send payload to Discord webhook using cURL
-                local curlWebhookCommand = 'curl -X POST -H "Content-Type: application/json" -d \'' .. json.encode(payload) .. '\' "' .. webhookUrl .. '"'
-                os.execute(curlWebhookCommand)
+                -- Send payload to Discord webhook
+                local _, statusCode = http.request {
+                    url = webhookUrl,
+                    method = "POST",
+                    headers = {
+                        ["Content-Type"] = "application/json",
+                    },
+                    source = json.encode(payload),
+                }
+    
+                if statusCode == 200 then
+                    print("Webhook message sent successfully")
+                else
+                    print("Failed to send webhook message. Status code:", statusCode)
+                end
             else
-                print("Failed to fetch Roblox user data")
+                print("Failed to fetch Roblox user data. Status code:", statusCode)
             end
         end
     })
-    
+
 
     
 end
