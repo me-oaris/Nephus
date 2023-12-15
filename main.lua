@@ -97,7 +97,7 @@ local SpeedSlider = Tabs.Misc:AddSlider("Slider", {
     Max = 100,
     Rounding = 1,
     Callback = function(Value)
-        game.LocalPlayer.Humanoid.WalkSpeed(Value)
+        game.Workspace.LocalPlayer.Humanoid.WalkSpeed(Value)
     end
 })
 
@@ -115,7 +115,7 @@ local SizeSlider = Tabs.Misc:AddSlider("Slider", {
     Max = 100,
     Rounding = 1,
     Callback = function(Value)
-        game.LocalPlayer.Humanoid.WalkSpeed(Value)
+        game.Workspace.LocalPlayer.Humanoid.WalkSpeed(Value)
     end
 })
 
