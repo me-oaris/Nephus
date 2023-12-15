@@ -89,10 +89,38 @@ end)
 
 Options.auto_guess:SetValue(false)
 
-Tabs.Misc:AddButton({
-    Title = "Button of nothingness",
-    Description = "This button does nothing",
-    Callback = function()
-        sendhook("Button of nothingness was pressed!")
+local SpeedSlider = Tabs.Misc:AddSlider("Slider", {
+    Title = "Speed Increase",
+    Description = "Set the speed value of the player",
+    Default = 16,
+    Min = 16,
+    Max = 100,
+    Rounding = 1,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character:SetAttribute("",Value)
     end
 })
+
+SpeedSlider:OnChanged(function(Value)
+    print("Slider changed:", Value)
+end)
+
+SpeedSlider:SetValue(16)
+
+local SizeSlider = Tabs.Misc:AddSlider("Slider", {
+    Title = "Size Increase",
+    Description = "Set the size value of the player",
+    Default = 16,
+    Min = 16,
+    Max = 100,
+    Rounding = 1,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character:SetAttribute("",Value)
+    end
+})
+
+SizeSlider:OnChanged(function(Value)
+    print("Slider changed:", Value)
+end)
+
+SizeSlider:SetValue(3)
