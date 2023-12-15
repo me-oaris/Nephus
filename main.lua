@@ -3,7 +3,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Nephus Hub" .. Fluent.Version,
+    Title = "Nephus Hub V1",
     SubTitle = "by Sakchem",
     TabWidth = 100,
     Size = UDim2.fromOffset(580, 460),
