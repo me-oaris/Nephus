@@ -22,10 +22,14 @@ Tabs.Main:AddParagraph({
     Content = " NaN"
 })
 
-local Toggle = Tabs.Main:AddToggle("auto_guess", {Title = "Auto Guess", Default = false })
+local Toggle = Tabs.Main:AddToggle("auto_guess", {Title = "AutoGuess", Default = false })
 
 Toggle:OnChanged(function()
-    print("Auto Guess Turned:", Options.auto_guess.Value)
+    local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+    while Options.auto_guess.Value == true do
+        wait(0.3)
+        rootPart.CFrame = CFrame.new(-28.8715343, 10.38292503, -140.642776, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    end
 end)
 
 Options.auto_guess:SetValue(false)
@@ -54,12 +58,17 @@ local Slider = Tabs.Misc:AddSlider("Slider", {
     })        
 
 
-    local SpeedToggle = Tabs.Misc:AddToggle("Toggle", {Title = "Increase Speed", Default = false })
+    local SpeedToggle = Tabs.Misc:AddToggle("HyperSpeed", {Title = "Hyper Speed", Default = false })
 
-    SpeedToggle:OnChanged(function()
-        option = Options.Toggle.Value
-        print("Speed :",option)
-    end)
+local function ToggleChanged()
+    local player = game.Players.LocalPlayer
+    local playerName = player.Name
+    local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
+    local humanoid = playerFilePath:FindFirstChild("Humanoid")
+    while Options.HyperSpeed.Value == true do
+        humanoid.WalkSpeed = 300
+        wait(2)  -- Add a delay of 2 seconds before printing again
+    end
+end
 
-    
-    
+ SpeedToggle:OnChanged(ToggleChanged)
