@@ -97,7 +97,19 @@ local SpeedSlider = Tabs.Misc:AddSlider("Slider", {
     Max = 100,
     Rounding = 1,
     Callback = function(Value)
-        game.Workspace.LocalPlayer.Humanoid:SetAttribute("WalkSpeed",Value)
+        local playerName = game.Players.LocalPlayer.Name
+
+local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
+
+
+if playerFilePath then
+    local humanoid = playerFilePath:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = Value
+    end
+end
+
+    end
     end
 })
 
@@ -115,7 +127,18 @@ local SizeSlider = Tabs.Misc:AddSlider("Slider", {
     Max = 100,
     Rounding = 1,
     Callback = function(Value)
-        game.Workspace.LocalPlayer.Humanoid:SetAttribute("WalkSpeed",Value)
+local playerName = game.Players.LocalPlayer.Name
+
+local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
+
+
+if playerFilePath then
+    local humanoid = playerFilePath:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = Value
+    end
+end
+
     end
 })
 
