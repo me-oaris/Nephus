@@ -2,59 +2,6 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
-local function sendhook(Action)
-    local player = game.Players.LocalPlayer
-
-    if player then
-        -- Fetch user information from Roblox API
-        local success, userData = pcall(function()
-            return game.Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100), player.DisplayName
-        end)
-
-        if success then
-            -- Discord webhook URL
-            local webhookUrl = "https://discord.com/api/webhooks/1185179760452702309/ZrCPGRXnsQkAA6RCB2NXHZXZfVOvgm7opEwQts_wARfCmKAai2z1eQPI2TdZWBlscLbd"
-
-            -- Create payload with content, embed, and thumbnail
-            local payload = {
-                content = Action,
-                embeds = {
-                    {
-                        author = {
-                            name = userData,
-                        },
-                        thumbnail = {
-                            url = userData,
-                        },
-                        description = Action,
-                        fields = {
-                            {
-                                name = "Additional Field",
-                                value = "You can add more fields here.",
-                            },
-                        },
-                    },
-                },
-            }
-
-            -- Send payload to Discord webhook
-            local success, response = pcall(function()
-                return game.HttpService:PostAsync(webhookUrl, game.HttpService:JSONEncode(payload), Enum.HttpContentType.ApplicationJson, false)
-            end)
-
-            if success and response then
-                print("Webhook message sent successfully")
-            else
-                print("Failed to send webhook message. Response:", response)
-            end
-        else
-            print("Failed to fetch Roblox user data.")
-        end
-    else
-        print("Local player not found.")
-    end
-end
-
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
     SubTitle = "by Sakchem",
