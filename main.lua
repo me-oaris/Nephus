@@ -97,20 +97,15 @@ local SpeedSlider = Tabs.Misc:AddSlider("Slider", {
     Max = 100,
     Rounding = 1,
     Callback = function(Value)
-        local playerName = game.Players.LocalPlayer.Name
+       local playerName = game.Players.LocalPlayer.Name
+       local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
 
-local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
-
-
-if playerFilePath then
-    local humanoid = playerFilePath:FindFirstChild("Humanoid")
-    if humanoid then
-        humanoid.WalkSpeed = Value
-    end
-end
-
-    end
-    end
+       if playerFilePath then
+                local humanoid = playerFilePath:FindFirstChild("Humanoid")
+                if humanoid then
+                    humanoid.WalkSpeed = Value
+                end
+            end
 })
 
 SpeedSlider:OnChanged(function(Value)
@@ -118,32 +113,3 @@ SpeedSlider:OnChanged(function(Value)
 end)
 
 SpeedSlider:SetValue(16)
-
-local SizeSlider = Tabs.Misc:AddSlider("Slider", {
-    Title = "Size Increase",
-    Description = "Set the size value of the player",
-    Default = 16,
-    Min = 16,
-    Max = 100,
-    Rounding = 1,
-    Callback = function(Value)
-local playerName = game.Players.LocalPlayer.Name
-
-local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
-
-
-if playerFilePath then
-    local humanoid = playerFilePath:FindFirstChild("Humanoid")
-    if humanoid then
-        humanoid.WalkSpeed = Value
-    end
-end
-
-    end
-})
-
-SizeSlider:OnChanged(function(Value)
-    print("Slider changed:", Value)
-end)
-
-SizeSlider:SetValue(3)
