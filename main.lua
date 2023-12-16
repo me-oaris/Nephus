@@ -1,6 +1,35 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local success, result = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+end)
+
+if success then
+    local Fluent = result
+
+    success, result = pcall(function()
+        return loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+    end)
+
+    if success then
+        local SaveManager = result
+
+        success, result = pcall(function()
+            return loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+        end)
+
+        if success then
+            local InterfaceManager = result
+
+            -- Now proceed with the rest of your script
+            -- ...
+        else
+            warn("Failed to load InterfaceManager:", result)
+        end
+    else
+        warn("Failed to load SaveManager:", result)
+    end
+else
+    warn("Failed to load Fluent:", result)
+end
 
 -- Assuming http and json are properly loaded
 
@@ -56,8 +85,6 @@ local function sendhook(Action)
         print("Local player not found.")
     end
 end
-
--- Assuming Fluent and other libraries are loaded
 
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
