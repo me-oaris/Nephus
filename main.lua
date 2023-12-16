@@ -30,4 +30,27 @@ end)
 
 Options.auto_guess:SetValue(false)
 
+local SpeedSlider = Tabs.Misc:AddSlider("Slider", {
+    Title = "Speed Increase",
+    Description = "Set the speed value of the player",
+    Default = 16,
+    Min = 16,
+    Max = 100,
+    Rounding = 1,
+    Callback = function(Value)
+       local playerName = game.Players.LocalPlayer.Name
+       local playerFilePath = game.Workspace:WaitForChild(playerName, math.huge)
 
+       if playerFilePath then
+                local humanoid = playerFilePath:FindFirstChild("Humanoid")
+                if humanoid then
+                    humanoid.WalkSpeed = Value
+                end
+            end
+})
+
+SpeedSlider:OnChanged(function(Value)
+    print("Slider changed:", Value)
+end)
+
+SpeedSlider:SetValue(16)
