@@ -1,37 +1,6 @@
-local Fluent, SaveManager, InterfaceManager
-
-local success, result = pcall(function()
-    return loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-end)
-
-if success then
-    Fluent = result
-
-    success, result = pcall(function()
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-    end)
-
-    if success then
-        SaveManager = result
-
-        success, result = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-        end)
-
-        if success then
-            InterfaceManager = result
-
-            -- Proceed with the rest of your script using Fluent, SaveManager, and InterfaceManager
-            -- ...
-        else
-            warn("Failed to load InterfaceManager:", result)
-        end
-    else
-        warn("Failed to load SaveManager:", result)
-    end
-else
-    warn("Failed to load Fluent:", result)
-end
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local function sendhook(Action)
     local player = game.Players.LocalPlayer
