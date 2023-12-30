@@ -1,5 +1,8 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
+local songButton = workspace.Settings.selectedsong -- Assuming selectedsong is a TextButton with a custom attribute "Title"
+local songTitle = songButton:GetAttribute("Title")
+
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
     SubTitle = "by Sakchem",
@@ -19,7 +22,7 @@ local Options = Fluent.Options
 
 Tabs.Main:AddParagraph({
     Title = "Currently Playing:",
-    Content = " NaN"
+    Content = songTitle
 })
 
 local Toggle = Tabs.Main:AddToggle("auto_guess", {Title = "AutoGuess", Default = false })
@@ -28,7 +31,7 @@ Toggle:OnChanged(function()
     local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
     while Options.auto_guess.Value == true do
         wait(0.3)
-        rootPart.CFrame = CFrame.new(-28.8715343, 10.38292503, -140.642776, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+        
     end
 end)
 
