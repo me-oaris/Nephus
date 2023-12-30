@@ -1,8 +1,5 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 
-local songButton = workspace.Settings.selectedsong -- Assuming selectedsong is a TextButton with a custom attribute "Title"
-local songTitle = songButton:GetAttribute("Title")
-
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
     SubTitle = "by Sakchem",
@@ -20,10 +17,22 @@ local Tabs = {
 
 local Options = Fluent.Options
 
-Tabs.Main:AddParagraph({
-    Title = "Currently Playing:",
-    Content = songTitle
-})
+-- Function to update UI
+local function UpdateUI(newSongTitle)
+    Tabs.Main:AddParagraph({
+        Title = "Currently Playing:",
+        Content = tostring(newSongTitle)
+    })
+end
+
+-- Function to be called when the "Title" attribute changes
+local function OnTitleChanged()
+    local newSongTitle = songButton:GetAttribute("Title")
+    UpdateUI(newSongTitle)
+end
+
+-- Connect the function to the ValueChanged event
+songButton:GetAttributeChangedSignal("Title"):Connect(OnTitleChanged)
 
 local Toggle = Tabs.Main:AddToggle("auto_guess", {Title = "AutoGuess", Default = false })
 
