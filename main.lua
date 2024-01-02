@@ -1,4 +1,21 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local gui = Instance.new("ScreenGui")
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+
+-- Custom AssetID for the image you want to use
+local customAssetID = "15619828392"
+
+-- Create the ImageButton
+local button = Instance.new("ImageButton")
+button.Size = UDim2.new(0, 50, 0, 50) -- Set your desired size
+button.Position = UDim2.new(0.5, -300, 0.5, -100) -- Center on the screen
+button.AnchorPoint = Vector2.new(0.5, 0.5)
+button.Image = "rbxassetid://" .. customAssetID
+button.Parent = gui
+
+button.MouseButton1Click:Connect(function()
+    Window.Visible = not Window.Visible -- Toggle the visibility of the window
+end)
 
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
