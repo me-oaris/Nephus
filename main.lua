@@ -31,24 +31,6 @@ local Tabs = {
 }
 
 local Options = Fluent.Options
-
--- Function to update UI
-local function UpdateUI(newSongTitle)
-    Tabs.Main:AddParagraph({
-        Title = "Currently Playing:",
-        Content = tostring(newSongTitle)
-    })
-end
-
--- Function to be called when the "Title" attribute changes
-local function OnTitleChanged()
-    local newSongTitle = songButton:GetAttribute("Title")
-    UpdateUI(newSongTitle)
-end
-
--- Connect the function to the ValueChanged event
-songButton:GetAttributeChangedSignal("Title"):Connect(OnTitleChanged)
-
 local Toggle = Tabs.Main:AddToggle("auto_guess", {Title = "AutoGuess", Default = false })
 
 Toggle:OnChanged(function()
