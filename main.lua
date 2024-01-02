@@ -23,6 +23,8 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 
+Window.Visible = false
+
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "diamond" })
