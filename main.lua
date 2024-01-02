@@ -13,10 +13,6 @@ button.AnchorPoint = Vector2.new(0.5, 0.5)
 button.Image = "rbxassetid://" .. customAssetID
 button.Parent = gui
 
-button.MouseButton1Click:Connect(function()
-    Window.Visible = not Window.Visible -- Toggle the visibility of the window
-end)
-
 local Window = Fluent:CreateWindow({
     Title = "Nephus Hub V1",
     SubTitle = "by Sakchem",
@@ -101,3 +97,7 @@ local function ToggleChanged()
 end
 
  SpeedToggle:OnChanged(ToggleChanged)
+
+button.MouseButton1Click:Connect(function()
+    Window.Visible = not Window.Visible -- Toggle the visibility of the window
+end)
