@@ -23,8 +23,6 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl
 })
 
-Window.Visible = false
-
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "home" }),
     Misc = Window:AddTab({ Title = "Misc", Icon = "diamond" })
@@ -82,6 +80,10 @@ end
 
  SpeedToggle:OnChanged(ToggleChanged)
 
+local function pressLeftControl()
+    game:GetService("UserInputService").InputBegan:Fire({ KeyCode = Enum.KeyCode.LeftControl })
+end
+
 button.MouseButton1Click:Connect(function()
-    Window.Visible = not Window.Visible -- Toggle the visibility of the window
+    pressLeftControl() -- Simulate LeftControl key press 
 end)
