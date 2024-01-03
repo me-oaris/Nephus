@@ -80,11 +80,9 @@ end
 
  SpeedToggle:OnChanged(ToggleChanged)
 
-local function pressLeftControl()
-    game:GetService("UserInputService").InputBegan:Fire({ KeyCode = Enum.KeyCode.LeftControl })
-end
-
 button.MouseButton1Click:Connect(function()
-    pressLeftControl() -- Simulate LeftControl key press 
-    Print("Gui Toggled")
+    local input = Instance.new("InputObject", game)
+    input.UserInputType = Enum.UserInputType.Keyboard
+    input.KeyCode = Enum.KeyCode.LeftControl
+    game:GetService("UserInputService").InputBegan:Fire(input)
 end)
