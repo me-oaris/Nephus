@@ -86,4 +86,5 @@ end
 
 button.MouseButton1Click:Connect(function()
     pressLeftControl() -- Simulate LeftControl key press 
+    Print("Gui Toggled")
 end)
