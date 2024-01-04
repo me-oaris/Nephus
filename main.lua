@@ -1,6 +1,5 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local gui = Instance.new("ScreenGui")
-local input = loadstring(game:HttpGet('https://pastebin.com/raw/EBjpS1pB'))()
 gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 -- Custom AssetID for the image you want to use
@@ -82,5 +81,5 @@ end
  SpeedToggle:OnChanged(ToggleChanged)
 
 button.MouseButton1Click:Connect(function()
-    input.press(Enum.KeyCode.LeftControl)
+    game:GetService('VirtualInputManager'):SendKeyEvent(true,Enum.Keycode.LeftControl, false, yes)
 end)
