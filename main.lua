@@ -81,5 +81,5 @@ end
  SpeedToggle:OnChanged(ToggleChanged)
 
 button.MouseButton1Click:Connect(function()
-    game:GetService('VirtualInputManager'):SendKeyEvent(true,Enum.Keycode.LeftControl, false, yes)
+    game:GetService('VirtualInputManager'):SendKeyEvent(true,'LeftControl', false, yes)
 end)
