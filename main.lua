@@ -74,7 +74,7 @@ local function ToggleChanged()
     local humanoid = playerFilePath:FindFirstChild("Humanoid")
     while Options.HyperSpeed.Value == true do
         humanoid.WalkSpeed = 300
-        wait(2)  -- Add a delay of 2 seconds before printing again
+        wait(2)  
     end
 end
 
