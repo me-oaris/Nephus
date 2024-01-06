@@ -1,9 +1,10 @@
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local gui = Instance.new("ScreenGui")
+gui.ResetOnSpawn = false
 gui.Parent = game.Players.LocalPlayer.PlayerGui
 
 -- Custom AssetID for the image you want to use
-local customAssetID = "15619828392"
+local customAssetID = "15894229415"
 
 -- Create the ImageButton
 local button = Instance.new("ImageButton")
