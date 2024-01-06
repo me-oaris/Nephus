@@ -20,9 +20,9 @@ button.BackgroundColor3 = Color3.new(0, 0, 0)
 
 -- Ui elements
 
-local main = Luxt:Tab("Main", 15894028337)
-local misc = Luxt:Tab("Misc", 15894092702)
-local credits = Luxt:Tab("Credits", 15894120362)
+local main = Luxt:Tab("Main", 15894850807)
+local misc = Luxt:Tab("Misc", 15894856117)
+local credits = Luxt:Tab("Credits", 15894861533)
 local sc = credits:Section("Script Credits")
 sc:Credit("Sakchem (@me_oaris) -- Discord")
 local auto = main:Section("Auto Tasks")
