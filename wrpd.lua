@@ -12,10 +12,12 @@ local answergui = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Answe
 local win = Flux:Window("Nephus Hub", "By Sakchem", Color3.fromRGB(62, 180, 137), Enum.KeyCode.LeftControl)
 local Main = win:Tab("Main", "http://www.roblox.com/asset/?id=6023426915")
 Main:Toggle("Autofarm Levels", "*Warn* Only Use In Private", function(t)
-_G.autolevel = t
+       _G.autolevel = t
+       print(t)
 end)
 Main:Toggle("AutoGuess Normal", "Auto guesses song when you enter stage", function(t)
-_G.autoguess_normal = t
+       _G.autoguess_normal = t
+       print(t)
 end)
 
 --Scripts 
