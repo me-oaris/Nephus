@@ -1,5 +1,5 @@
 local Luxtl = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Luxware-UI-Library/main/Source.lua"))()
-local Luxt = Luxtl.CreateWindow("Wisteria GUI", 6105620301)
+local Luxt = Luxtl.CreateWindow("Nephus Hub", 6105620301)
 
 --Declarations
 local songButton = workspace.Settings.selectedsong
@@ -14,6 +14,8 @@ local sc = credits:Section("Script Credits")
 sc:Credit("Sakchem (@me_oaris) -- Discord")
 local auto = main:Section("Auto Tasks")
 auto:Label("Welcome to Nephus Hub")
+
+
 auto:Toggle("Auto Guess (Normal)", function(a)
     while a == true do
  if answergui.Visible == true then
