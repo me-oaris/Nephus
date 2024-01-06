@@ -7,7 +7,7 @@ _G.autoguess_normal = false
 
 -- Declatarions
 local songButton = workspace.Settings.selectedsong
-
+local answergui = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AnswerGui
 -- UI elements
 local win = Flux:Window("Nephus Hub", "By Sakchem", Color3.fromRGB(62, 180, 137), Enum.KeyCode.LeftControl)
 local Main = win:Tab("Main", "http://www.roblox.com/asset/?id=6023426915")
@@ -29,12 +29,13 @@ Wait(0.1)
 end
 
 while _G.autoguess_normal == true do
- if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AnswerGui.Visible == true then
+ if answergui.Visible == true then
     local args = {
     [1] = songButton:GetAttribute("Title")
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
+answergui.Visible = false
  end
 wait(1)
 end
