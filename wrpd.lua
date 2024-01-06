@@ -1,36 +1,21 @@
-local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()
+local Luxtl = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Luxware-UI-Library/main/Source.lua"))()
+local Luxt = Luxtl.CreateWindow("Wisteria GUI", 6105620301)
 
-
--- Functions
-_G.autolevel = false
-_G.autoguess_normal = false
-
--- Declatarions
+--Declarations
 local songButton = workspace.Settings.selectedsong
 local answergui = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AnswerGui
--- UI elements
-local win = Flux:Window("Nephus Hub", "By Sakchem", Color3.fromRGB(62, 180, 137), Enum.KeyCode.LeftControl)
-local Main = win:Tab("Main", "http://www.roblox.com/asset/?id=6023426915")
-Main:Toggle("Autofarm Levels", "*Warn* Only Use In Private", function(t)
-       _G.autolevel = t
-       print(t)
-end)
-Main:Toggle("AutoGuess Normal", "Auto guesses song when you enter stage", function(t)
-       _G.autoguess_normal = t
-       print(t)
-end)
 
---Scripts 
-while _G.autolevel == true do
-	local args = {
-    [1] = songButton:GetAttribute("Title")
-}
+-- Ui elements
 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
-Wait(0.1)
-end
-
-while _G.autoguess_normal == true do
+local main = Luxt:Tab("Main", 6087485864)
+local misc = Luxt:Tab("Misc")
+local credits = Luxt:Tab("Credits")
+local sc = credits:Section("Script Credits")
+sc:Credit("Sakchem (@me_oaris) -- Discord")
+local auto = main:Section("Auto Tasks")
+auto:Label("Welcome to Nephus Hub")
+auto:Toggle("Auto Guess (Normal)", function(a)
+    while a == true do
  if answergui.Visible == true then
     local args = {
     [1] = songButton:GetAttribute("Title")
@@ -41,22 +26,19 @@ answergui.Visible = false
  end
 wait(1)
 end
-
--- Toggle script button
-local gui = Instance.new("ScreenGui")
-gui.Parent = game.Players.LocalPlayer.PlayerGui
-
-local customAssetID = "15619828392"
-
-local button = Instance.new("ImageButton")
-button.Size = UDim2.new(0, 50, 0, 50) 
-button.Position = UDim2.new(0.5, -300, 0.5, -100) 
-button.AnchorPoint = Vector2.new(0.5, 0.5)
-button.Image = "rbxassetid://" .. customAssetID
-button.Parent = gui
-
-
-button.MouseButton1Click:Connect(function()
-game:GetService('VirtualInputManager'):SendKeyEvent(true, 'LeftControl', false, yes)
 end)
-    
+auto:Toggle("Auto Guess (Advanced)", function(a)
+    while _G.autolevel == true do
+	
+Wait(0.1)
+end)
+auto:Toggle("Auto Levels *RISKY*", function(a)
+    while a == true do
+	local args = {
+    [1] = songButton:GetAttribute("Title")
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
+Wait(0.1)
+end)
+		
