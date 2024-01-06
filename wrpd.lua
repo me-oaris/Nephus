@@ -1,7 +1,7 @@
 local Luxtl = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Luxware-UI-Library/main/Source.lua"))()
 local Luxt = Luxtl.CreateWindow("Nephus Hub | WRPD 💃", 6105620301)
 
---Declarations
+-- Declarations
 local songButton = workspace.Settings.selectedsong
 local answergui = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AnswerGui
 
@@ -15,32 +15,34 @@ sc:Credit("Sakchem (@me_oaris) -- Discord")
 local auto = main:Section("Auto Tasks")
 auto:Label("Welcome to Nephus Hub")
 
-
 auto:Toggle("Auto Guess (Normal)", function(a)
     while a == true do
- if answergui.Visible == true then
-    local args = {
-    [1] = songButton:GetAttribute("Title")
-}
+        if answergui.Visible == true then
+            local args = {
+                [1] = songButton:GetAttribute("Title")
+            }
 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
-answergui.Visible = false
- end
-wait(1)
-end
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
+            answergui.Visible = false
+        end
+        wait(1)
+    end
 end)
+
 auto:Toggle("Auto Guess (Advanced)", function(a)
-    while _G.autolevel == true do
-	
-Wait(0.1)
+    while a == true do
+        -- Add your "Auto Guess (Advanced)" logic here
+        wait(0.1)
+    end
 end)
+
 auto:Toggle("Auto Levels *RISKY*", function(a)
     while a == true do
-	local args = {
-    [1] = songButton:GetAttribute("Title")
-}
+        local args = {
+            [1] = songButton:GetAttribute("Title")
+        }
 
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
-Wait(0.1)
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
+        wait(0.1)
+    end
 end)
-		
