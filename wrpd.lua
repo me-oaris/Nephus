@@ -1,5 +1,5 @@
 local Luxtl = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Luxware-UI-Library/main/Source.lua"))()
-local Luxt = Luxtl.CreateWindow("Nephus Hub | WRPD 💃", 6105620301)
+local Luxt = Luxtl.CreateWindow("Nephus Hub", 6105620301)
 
 -- Declarations
 local songButton = workspace.Settings.selectedsong
@@ -7,9 +7,9 @@ local answergui = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.Answe
 
 -- Ui elements
 
-local main = Luxt:Tab("Main", 6087485864)
-local misc = Luxt:Tab("Misc")
-local credits = Luxt:Tab("Credits")
+local main = Luxt:Tab("Main", 15894028337)
+local misc = Luxt:Tab("Misc", 15894092702)
+local credits = Luxt:Tab("Credits", 15894120362)
 local sc = credits:Section("Script Credits")
 sc:Credit("Sakchem (@me_oaris) -- Discord")
 local auto = main:Section("Auto Tasks")
