@@ -3,6 +3,7 @@ local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scr
 
 -- Functions
 _G.autolevel = false
+_G.autoguess_normal = false
 
 -- Declatarions
 local songButton = workspace.Settings.selectedsong
@@ -13,6 +14,9 @@ local Main = win:Tab("Main", "http://www.roblox.com/asset/?id=6023426915")
 Main:Toggle("Autofarm Levels", "*Warn* Only Use In Private", function(t)
 _G.autolevel = t
 end)
+Main:Toggle("AutoGuess Normal", "Auto guesses song when you enter stage", function(t)
+_G.autoguess_normal = t
+end)
 
 --Scripts 
 while _G.autolevel == true do
@@ -22,6 +26,17 @@ while _G.autolevel == true do
 
 game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
 Wait(0.1)
+end
+
+while _G.autoguess_normal == true do
+ if game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AnswerGui.Visible == true then
+    local args = {
+    [1] = songButton:GetAttribute("Title")
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayAnimation"):FireServer(unpack(args))
+ end
+wait(1)
 end
 
 -- Toggle script button
