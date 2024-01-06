@@ -15,7 +15,7 @@ _G.autolevel = t
 end)
 
 --Scripts 
-while _G.lvlfarm == true do
+while _G.autolevel == true do
 	local args = {
     [1] = songButton:GetAttribute("Title")
 }
