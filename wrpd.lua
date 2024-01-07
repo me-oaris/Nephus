@@ -6,7 +6,7 @@ local songButton = workspace.Settings.selectedsong
 local answergui = game:GetService("Players").LocalPlayer.PlayerGui.MainGui.AnswerGui
 local gui = Instance.new("ScreenGui")
 gui.ResetOnSpawn = false
-gui.Parent = game.GetService("Players").LocalPlayer.PlayerGui
+gui.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 
 local customAssetID = "15894229415"
 local button = Instance.new("ImageButton")
