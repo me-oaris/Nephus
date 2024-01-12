@@ -3,3 +3,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/me-oaris/Nephus/main/
 else
 local user = game:GetService("Players").LocalPlayer
 user:kick("Game Not Supported")
+end
